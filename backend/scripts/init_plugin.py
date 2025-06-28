@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('C:/Users/Tod/Desktop/fba/backend')
 from anyio import run
-
 from backend.plugin.tools import install_requirements_async
-
 
 async def init() -> None:
     print('Starting initial plugin')
