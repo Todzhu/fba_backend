@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Body
 from backend.app.biocloud.schema.analysis_tool import AnalysisToolListRequest
-from backend.app.biocloud.service.analysis_tool import list_analysis_tools, toggle_favorite
+from backend.app.biocloud.service.analysis_tool import list_analysis_tools
 from backend.database.db import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -18,12 +18,4 @@ async def analysis_tool_list(
         category=req.category,
         func_type=req.func_type,
         search=req.search
-    )
-
-@router.post("/favorite")
-async def analysis_tool_favorite(
-    tool_id: int = Body(..., embed=True),
-    is_favorite: bool = Body(..., embed=True),
-    db: AsyncSession = Depends(get_db)
-):
-    return await toggle_favorite(db, tool_id, is_favorite) 
+    ) 
